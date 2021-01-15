@@ -1,0 +1,6 @@
+<h1>Login</h1>
+
+<%= form_for @conn, Routes.session_path(@conn, :delete), fn f -> %>
+<%= submit "Log out" %>
+
+<% end %>
