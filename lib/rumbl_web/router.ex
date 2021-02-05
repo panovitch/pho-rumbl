@@ -18,8 +18,16 @@ defmodule RumblWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+    get "/watch/:id", WatchController, :show
     resources "/users", UserController, only: [:index, :show, :new, :create]
+    resources "/videos", VideoController
     resources "/sessions", SessionController, only: [:delete, :new, :create]
+  end
+
+  scope "/manage", RumblWeb do
+    pipe_through [:browser, :authenticate_user]
+    resources "/videos", VideoController
+
   end
 
   # Other scopes may use custom stacks.
